@@ -4,7 +4,7 @@ import csv
 
 def create_data(file):
     data = []
-    with open(file, 'r', newline='') as csvfile:
+    with open(file, 'r', encoding='UTF-8', newline='') as csvfile:
         filedata = csv.reader(csvfile)
         for i in filedata:
             data.append(i)
