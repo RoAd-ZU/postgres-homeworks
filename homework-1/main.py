@@ -1,16 +1,17 @@
-"""Скрипт для заполнения данными таблиц в БД Postgres."""
 import psycopg2
-import os.path
+from pathlib import Path
 from north_data.csv_reader import create_data
 
+"""Скрипт для заполнения данными таблиц в БД Postgres."""
 
 def create_table():
     password = input('Введите свой пароль postgres\n')
     table1 = psycopg2.connect(host='localhost', database='north', user='postgres', password=password)
 
-    file1 = os.path.realpath('north_data/employees_data.csv')
-    file2 = os.path.realpath('north_data/customers_data.csv')
-    file3 = os.path.realpath('north_data/orders_data.csv')
+    # file1 = Path('north_data', 'employees_data.csv')
+    file1 = Path(__file__).parent.joinpath('north_data').joinpath('employees_data.csv')
+    file2 = Path(__file__).parent.joinpath('north_data').joinpath('customers_data.csv')
+    file3 = Path(__file__).parent.joinpath('north_data').joinpath('orders_data.csv')
 
     data1 = create_data(file1)
     data2 = create_data(file2)
