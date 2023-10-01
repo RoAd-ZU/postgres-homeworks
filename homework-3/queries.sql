@@ -22,9 +22,9 @@ ORDER BY units_in_stock;
 -- 3. Список компаний заказчиков (company_name из табл customers), не сделавших ни одного заказа
 SELECT company_name
 FROM customers
-WHERE NOT EXISTS (SELECT * FROM orders WHERE customers.customer_id = orders.customer_id)
+WHERE NOT EXISTS (SELECT * FROM orders WHERE customers.customer_id = orders.customer_id);
 
 -- 4. уникальные названия продуктов, которых заказано ровно 10 единиц (количество заказанных единиц см в колонке quantity табл order_details)
 -- Этот запрос написать именно с использованием подзапроса.
 SELECT DISTINCT product_name
-FROM (SELECT * FROM products INNER JOIN order_details USING(product_id) WHERE order_details.quantity = 10)
+FROM (SELECT * FROM products INNER JOIN order_details USING(product_id) WHERE order_details.quantity = 10);
